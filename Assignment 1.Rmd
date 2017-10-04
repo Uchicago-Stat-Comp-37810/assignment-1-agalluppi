@@ -1,0 +1,87 @@
+---
+title: "agalluppi Homework Assignment 1"
+output: html_document
+---
+
+## Section 4.1.1
+
+### Exercise 2
+####(a)
+```{r}
+#Create an empty vector for the first 30 values of the Fibonacci sequence and set the first two values
+fib <- vector(mode = "numeric", length = 30)
+fib[1] = fib[2] <- 1
+
+#Compute values of the Fibonacci vector
+for (i in 3:30){
+  fib[i] <- fib[i-1] + fib[i-2]  
+}
+
+#Create an empty vector for the ratios of the Fibonacci numbers and the previous Fibonacci number
+fibRatios <- vector(mode = "numeric", length = 29)
+
+#Compute the values of the Fibonacci ratios
+for (i in 2:30) {
+  fibRatios[i-1] <- fib[i]/fib[i-1]
+}
+print(fibRatios)
+```
+The values do appear to be converging.
+
+
+####(b)
+$$ (1+\sqrt5)/2 $$
+
+```{r, echo = FALSE}
+(1+sqrt(5))/2
+
+```
+
+
+
+### Exercise 3
+####(a)
+
+```{r}
+answer <- 0
+for (j in 1:5) answer <- answer + j
+print(answer)
+
+```
+
+####(b)
+
+```{r}
+answer <- NULL
+for (j in 1:5) answer <- c(answer, j)
+print(answer)
+
+```
+
+####(c)
+
+```{r}
+answer <- 0
+for (j in 1:5) answer <- c(answer, j)
+print(answer)
+
+```
+
+####(d)
+
+```{r}
+answer <- 1
+for (j in 1:5) answer <- answer * j
+print(answer)
+
+```
+
+####(e)
+
+```{r}
+answer <- 3
+for (j in 1:15) answer <- c(answer, (7 * answer[j]) %% 31)
+print(answer)
+
+```
+Knowing nothing at all about the rule, I wouldn't have confidence guessing the next terms in the sequence; however, I was able to guess that the sequence repeated given the code above.
