@@ -85,3 +85,19 @@ print(answer)
 
 ```
 Knowing nothing at all about the rule, I wouldn't have confidence guessing the next terms in the sequence; however, I was able to guess that the sequence repeated given the code above.
+
+## Section 4.1.2
+
+### Exercise 4
+```{r}
+#Given initial investment, P, and number of years, y, this function caluclates interest accrued, I
+interest <- function(P, y) {
+    if (y <= 3) {
+      I <- P*((1+0.04)^y-1) #Interest rate is 4%/yr if investment period is less than or equal to 3 years
+    }  
+    else {
+      I <- P*((1+0.05)^y-1) #Interest rate is 5%/yr if investment period is more than 3 years
+    }
+  return(round(I, digits = 2))
+}
+```  

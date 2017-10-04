@@ -196,6 +196,22 @@ print(answer)</code></pre>
 </div>
 </div>
 </div>
+<div id="section-4.1.2" class="section level2">
+<h2>Section 4.1.2</h2>
+<div id="exercise-4" class="section level3">
+<h3>Exercise 4</h3>
+<pre class="r"><code>#Given initial investment, P, and number of years, y, this function caluclates interest accrued, I
+interest &lt;- function(P, y) {
+    if (y &lt;= 3) {
+      I &lt;- P*((1+0.04)^y-1) #Interest rate is 4%/yr if investment period is less than or equal to 3 years
+    }  
+    else {
+      I &lt;- P*((1+0.05)^y-1) #Interest rate is 5%/yr if investment period is more than 3 years
+    }
+  return(round(I, digits = 2))
+}</code></pre>
+</div>
+</div>
 
 
 
