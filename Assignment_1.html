@@ -202,13 +202,34 @@ print(answer)</code></pre>
 <h3>Exercise 4</h3>
 <pre class="r"><code>#Given initial investment, P, and number of years, y, this function caluclates interest accrued, I
 interest &lt;- function(P, y) {
-    if (y &lt;= 3) {
-      I &lt;- P*((1+0.04)^y-1) #Interest rate is 4%/yr if investment period is less than or equal to 3 years
-    }  
+   #Interest rate is 4%/yr if investment period is less than or equal to 3 years
+   if (y &lt;= 3) {
+      i &lt;- 0.04
+      I &lt;- P*((1+i)^y-1) 
+   }  
+  #Interest rate is 5%/yr if investment period is more than 3 years
     else {
-      I &lt;- P*((1+0.05)^y-1) #Interest rate is 5%/yr if investment period is more than 3 years
+      i &lt;- 0.05
+      I &lt;- P*((1+i)^y-1) 
     }
   return(round(I, digits = 2))
+}</code></pre>
+</div>
+<div id="exercise-5" class="section level3">
+<h3>Exercise 5</h3>
+<pre class="r"><code>#Given original principle, P, term length, m, and whether the term is open (open = TRUE, defaults to closed otherwise), this function outputs monthly mortage payment, R
+MonthlyPayment &lt;- function(P, m, open = FALSE) {
+   #if the term is open, interest rate is 0.05%/month
+   if (open == TRUE) {
+     i &lt;- 0.005
+      R &lt;- P*i/(1-(1+i)^(-m)) 
+   }  
+  ##if the term is closed, interest rate is 0.04%/month
+    else {
+      i &lt;- 0.004
+      R &lt;- P*i/(1-(1+i)^(-m)) 
+    }
+  return(round(R, digits = 2))
 }</code></pre>
 </div>
 </div>

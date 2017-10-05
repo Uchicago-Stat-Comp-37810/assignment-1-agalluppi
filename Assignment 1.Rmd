@@ -92,12 +92,33 @@ Knowing nothing at all about the rule, I wouldn't have confidence guessing the n
 ```{r}
 #Given initial investment, P, and number of years, y, this function caluclates interest accrued, I
 interest <- function(P, y) {
-    if (y <= 3) {
-      I <- P*((1+0.04)^y-1) #Interest rate is 4%/yr if investment period is less than or equal to 3 years
-    }  
+   #Interest rate is 4%/yr if investment period is less than or equal to 3 years
+   if (y <= 3) {
+      i <- 0.04
+      I <- P*((1+i)^y-1) 
+   }  
+  #Interest rate is 5%/yr if investment period is more than 3 years
     else {
-      I <- P*((1+0.05)^y-1) #Interest rate is 5%/yr if investment period is more than 3 years
+      i <- 0.05
+      I <- P*((1+i)^y-1) 
     }
   return(round(I, digits = 2))
+}
+```  
+### Exercise 5
+```{r}
+#Given original principle, P, term length, m, and whether the term is open (open = TRUE, defaults to closed otherwise), this function outputs monthly mortage payment, R
+MonthlyPayment <- function(P, m, open = FALSE) {
+   #if the term is open, interest rate is 0.05%/month
+   if (open == TRUE) {
+     i <- 0.005
+      R <- P*i/(1-(1+i)^(-m)) 
+   }  
+  ##if the term is closed, interest rate is 0.04%/month
+    else {
+      i <- 0.004
+      R <- P*i/(1-(1+i)^(-m)) 
+    }
+  return(round(R, digits = 2))
 }
 ```  
