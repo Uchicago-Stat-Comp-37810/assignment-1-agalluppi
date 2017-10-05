@@ -36,7 +36,7 @@ $$ (1+\sqrt5)/2 $$
 (1+sqrt(5))/2
 
 ```
-
+The fibRatios vector takes this value from element 16 onward.
 
 
 ### Exercise 3
@@ -114,7 +114,7 @@ MonthlyPayment <- function(P, m, open = FALSE) {
      i <- 0.005
       R <- P*i/(1-(1+i)^(-m)) 
    }  
-  ##if the term is closed, interest rate is 0.04%/month
+  #if the term is closed, interest rate is 0.04%/month
     else {
       i <- 0.004
       R <- P*i/(1-(1+i)^(-m)) 
@@ -122,3 +122,51 @@ MonthlyPayment <- function(P, m, open = FALSE) {
   return(round(R, digits = 2))
 }
 ```  
+
+## Section 4.1.3
+
+### Exercise 2
+```{r}
+#Define beginning of Fibonacci sequence
+Fibonacci <- c(1,1)
+#While the sum of the last two elements of the Fibonacci vector is less than 300, append this sum to the end of the existing Fibonacci vector 
+while(Fibonacci[length(Fibonacci)] + Fibonacci[length(Fibonacci)-1] < 300) {
+  Fibonacci <- c(Fibonacci, Fibonacci[length(Fibonacci)]+Fibonacci[length(Fibonacci)-1])
+}
+print(Fibonacci)
+  
+```
+
+### Exercise 4
+```{r}
+#Define starting interest rate, i, and a placeholder variable for the previous calculated value of interest, i_ref
+i = 0.006
+i_ref = 1
+#While the last calculated interest rate, i_ref, is larger than the current value of i by more than 0.000001, assign the current value of i as i_ref and then calulate a new value for i from the current value.
+while (i_ref-i > 0.000001) {
+  i_ref <- i
+  i <- (1-(1+i)^(-20))/19
+  
+}
+print(i)
+
+```
+
+### Exercise 5
+```{r}
+#Define starting interest rate, i, a placeholder variable for the previous calculated value of interest, i_ref, and a variable to count the number of iterations of the while loop
+i = 0.006
+i_ref = 1
+Iterations <- 0
+#While the last calculated interest rate, i_ref, is larger than the current value of i by more than 0.000001, assign the current value of i as i_ref and then calulate a new value for i from the current value.
+while (i_ref-i > 0.000001) {
+  i_ref <- i
+  i <- (1-(1+i)^(-20))/19
+  #Adds one to the count of iterations
+  Iterations <- Iterations + 1
+  
+}
+print(i)
+print(paste("Iterated", Iterations, "times."))
+
+```
