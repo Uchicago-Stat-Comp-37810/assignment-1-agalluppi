@@ -281,6 +281,51 @@ print(i)</code></pre>
 <pre><code>## [1] &quot;Iterated 74 times.&quot;</code></pre>
 </div>
 </div>
+<div id="section-4.1.5" class="section level2">
+<h2>Section 4.1.5</h2>
+<div id="exercise-2-2" class="section level3">
+<h3>Exercise 2</h3>
+<pre class="r"><code>Eratosthenes_sieve &lt;- function(n) {
+  # Print prime numbers up to n (based on the sieve of Eratosthenes)
+  if (n &gt;= 2) {
+    sieve &lt;- seq(2,n)
+    primes &lt;- c()
+    while (length(sieve) &gt; 0) {
+      p &lt;- sieve[1]
+      primes &lt;- c(primes, p)
+      sieve &lt;- sieve[(sieve %% p) != 0]
+      if (p &gt;= sqrt(n)) {
+        break
+      }
+    }
+    return(sieve)
+  } else {
+    stop(&quot;Input value of n should be at least 2.&quot;)
+  }
+}</code></pre>
+<div id="c-1" class="section level4">
+<h4>(c)</h4>
+<pre class="r"><code>Eratosthenes &lt;- function(n) {
+  # Print prime numbers up to n (based on the sieve of Eratosthenes)
+  if (n &gt;= 2) {
+    sieve &lt;- seq(2,n)
+    primes &lt;- c()
+    while (length(sieve) &gt; 0) {
+      p &lt;- sieve[1]
+      primes &lt;- c(primes, p)
+      sieve &lt;- sieve[(sieve %% p) != 0]
+      if (p &gt;= sqrt(n)) {
+        break
+      }
+    }
+    return(c(primes,sieve))
+  } else {
+    stop(&quot;Input value of n should be at least 2.&quot;)
+  }
+}</code></pre>
+</div>
+</div>
+</div>
 
 
 

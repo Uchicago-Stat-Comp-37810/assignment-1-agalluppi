@@ -170,3 +170,54 @@ print(i)
 print(paste("Iterated", Iterations, "times."))
 
 ```
+
+## Section 4.1.5
+
+### Exercise 2
+
+```{r}
+Eratosthenes_sieve <- function(n) {
+  # Print prime numbers up to n (based on the sieve of Eratosthenes)
+  if (n >= 2) {
+    sieve <- seq(2,n)
+    primes <- c()
+    while (length(sieve) > 0) {
+      p <- sieve[1]
+      primes <- c(primes, p)
+      sieve <- sieve[(sieve %% p) != 0]
+      if (p >= sqrt(n)) {
+        break
+      }
+    }
+    return(sieve)
+  } else {
+    stop("Input value of n should be at least 2.")
+  }
+}
+```
+
+####(c)
+
+```{r}
+Eratosthenes <- function(n) {
+  # Print prime numbers up to n (based on the sieve of Eratosthenes)
+  if (n >= 2) {
+    sieve <- seq(2,n)
+    primes <- c()
+    while (length(sieve) > 0) {
+      p <- sieve[1]
+      primes <- c(primes, p)
+      sieve <- sieve[(sieve %% p) != 0]
+      if (p >= sqrt(n)) {
+        break
+      }
+    }
+    return(c(primes,sieve))
+  } else {
+    stop("Input value of n should be at least 2.")
+  }
+}
+
+```
+
+
