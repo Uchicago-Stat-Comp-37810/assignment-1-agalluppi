@@ -257,7 +257,7 @@ compound.interest(1000, 0.01, 30)
 ```{r}
 # Define the function for which you want to find zeroes
 f_x <- function(x)
-x^2 - 1
+  x^2 - 1
 
 # This function uses the bisection algorithm to find zeroes of the function f_x given two inital boundaries a and b.
 bisection <- function(a, b) {
@@ -361,5 +361,88 @@ mergesort <- function(x, decreasing = FALSE) {
   }
       return(result)
 }
+
+```
+
+### Exercise 2
+
+```{r}
+fx_n <- fy_n <- 1
+
+gx_n = function(x,y){
+  2*x + 2*y^2
+}
+gy_n = function(x,y) {
+  x^2 + 4*y
+}
+f_n = function(x,y) {
+  x+y
+}
+g_n = function(x,y) {
+  x^2 + 2*y^2 - 2
+}
+d_n = function(x,y) {
+  fx_n*gy_n(x,y) - fy_n*gx_n(x,y)
+}
+
+Newton <- function(x,y) {
+while (abs(x+y) > 0.000001 || abs(x^2+2*y^2-2) > 0.000001) {
+  x <- x - (gy_n(x,y)*f_n(x,y) - fy_n*g_n(x,y))/d_n(x,y)
+  y <- y - (fx_n*g_n(x,y) - gx_n(x,y)*f_n(x,y))/d_n(x,y)
+}
+return(c(x,y))
+}
+
+```
+
+
+## Chapter 4 Exercises
+
+### Exercise 1
+```{r}
+# Given the value of x and a vector of constants, c, this function evaluates a polnomial of order length(c)-1
+directpoly <- function(x, c) {
+ P <- 0
+  for (i in 1:length(c)) {
+    P <- P + c[i]*x^(length(c)-i)
+  }
+  return(P)
+}
+```
+
+### Exercise 2
+```{r}
+# This function uses Horner's rule to exaluate a polynomial expression given the value of x and a vector of its constants, c.
+hornerpoly <- function(x, c) {
+  a <- c
+  for (i in 2:length(c)) {
+    a[i] <- a[i-1]*x+c[i]
+  }
+  return(a[length(c)])
+}
+
+```
+
+### Exercise 3
+
+####(a)
+```{r, echo = FALSE}
+print(paste("Directpoly time"))
+system.time(directpoly(x=seq(-10, 10, length=5000000),
+    c(1, -2, 2, 3, 4, 6, 7)))
+print(paste("Hornerpoly time"))
+system.time(hornerpoly(x=seq(-10, 10, length=5000000),
+    c(1, -2, 2, 3, 4, 6, 7)))
+
+```
+
+####(b)
+```{r, echo = FALSE}
+print(paste("Directpoly time"))
+system.time(directpoly(x=seq(-10, 10, length=5000000),
+    c(2, 17, -3)))
+print(paste("Hornerpoly time"))
+system.time(hornerpoly(x=seq(-10, 10, length=5000000),
+    c(2, 17, -3)))
 
 ```

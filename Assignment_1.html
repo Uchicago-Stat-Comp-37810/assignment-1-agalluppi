@@ -357,7 +357,7 @@ compound.interest &lt;- function(P, i.r, n) {
 <h3>Exercise 3</h3>
 <pre class="r"><code># Define the function for which you want to find zeroes
 f_x &lt;- function(x)
-x^2 - 1
+  x^2 - 1
 
 # This function uses the bisection algorithm to find zeroes of the function f_x given two inital boundaries a and b.
 bisection &lt;- function(a, b) {
@@ -461,6 +461,102 @@ mergesort &lt;- function(x, decreasing = FALSE) {
   }
       return(result)
 }</code></pre>
+</div>
+<div id="exercise-2-4" class="section level3">
+<h3>Exercise 2</h3>
+<pre class="r"><code>fx_n &lt;- fy_n &lt;- 1
+
+gx_n = function(x,y){
+  2*x + 2*y^2
+}
+gy_n = function(x,y) {
+  x^2 + 4*y
+}
+f_n = function(x,y) {
+  x+y
+}
+g_n = function(x,y) {
+  x^2 + 2*y^2 - 2
+}
+d_n = function(x,y) {
+  fx_n*gy_n(x,y) - fy_n*gx_n(x,y)
+}
+
+Newton &lt;- function(x,y) {
+while (abs(x+y) &gt; 0.000001 || abs(x^2+2*y^2-2) &gt; 0.000001) {
+  x &lt;- x - (gy_n(x,y)*f_n(x,y) - fy_n*g_n(x,y))/d_n(x,y)
+  y &lt;- y - (fx_n*g_n(x,y) - gx_n(x,y)*f_n(x,y))/d_n(x,y)
+}
+return(c(x,y))
+}</code></pre>
+</div>
+</div>
+<div id="chapter-4-exercises" class="section level2">
+<h2>Chapter 4 Exercises</h2>
+<div id="exercise-1-1" class="section level3">
+<h3>Exercise 1</h3>
+<pre class="r"><code># Given the value of x and a vector of constants, c, this function evaluates a polnomial of order length(c)-1
+directpoly &lt;- function(x, c) {
+ P &lt;- 0
+  for (i in 1:length(c)) {
+    P &lt;- P + c[i]*x^(length(c)-i)
+  }
+  return(P)
+}</code></pre>
+</div>
+<div id="exercise-2-5" class="section level3">
+<h3>Exercise 2</h3>
+<pre class="r"><code># This function uses Horner's rule to exaluate a polynomial expression given the value of x and a vector of its constants, c.
+hornerpoly &lt;- function(x, c) {
+  a &lt;- c
+  for (i in 2:length(c)) {
+    a[i] &lt;- a[i-1]*x+c[i]
+  }
+  return(a[length(c)])
+}</code></pre>
+</div>
+<div id="exercise-3-2" class="section level3">
+<h3>Exercise 3</h3>
+<div id="a-4" class="section level4">
+<h4>(a)</h4>
+<pre><code>## [1] &quot;Directpoly time&quot;</code></pre>
+<pre><code>##    user  system elapsed 
+##    1.96    0.13    2.08</code></pre>
+<pre><code>## [1] &quot;Hornerpoly time&quot;</code></pre>
+<pre><code>## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.14    0.19    0.33</code></pre>
+</div>
+<div id="b-4" class="section level4">
+<h4>(b)</h4>
+<pre><code>## [1] &quot;Directpoly time&quot;</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.50    0.06    0.56</code></pre>
+<pre><code>## [1] &quot;Hornerpoly time&quot;</code></pre>
+<pre><code>## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length
+
+## Warning in a[i] &lt;- a[i - 1] * x + c[i]: number of items to replace is not a
+## multiple of replacement length</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.06    0.04    0.11</code></pre>
+</div>
 </div>
 </div>
 
